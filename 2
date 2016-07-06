@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+void Copy(char file1[],char file2[]);
+int main()
+{
+	char file1[30],file2[30];
+	printf("请输入要复制的源文件：");
+	scanf("%s",file1);
+	printf("请输入要复制的目的文件：");
+	scanf("%s",file2);
+	Copy(file1,file2);
+	return 0; 
+}
+void Copy(char file1[],char file2[])
+{
+	char ch;
+	FILE *fpSource,*fpTarget;
+	fpSource = fopen(file1,"r");
+	fpTarget = fopen(file2,"w");
+	while(!feof(fpSource))
+	{
+		ch = fgetc(fpSource);
+		fputc(ch,fpTarget);
+	}
+	fclose(fpSource);
+	fclose(fpTarget);
+	printf("文件copy成功！\n");
+	return;
+}
